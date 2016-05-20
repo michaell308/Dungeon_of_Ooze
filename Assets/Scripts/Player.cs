@@ -15,7 +15,6 @@ public class Player : MonoBehaviour {
     CharacterController cc;
     // Use this for initialization
     void Start () {
-        //Screen.loc
         Cursor.lockState = CursorLockMode.Locked;
         cc = GetComponent<CharacterController>();
     }

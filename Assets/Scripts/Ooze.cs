@@ -8,8 +8,6 @@ public class Ooze : MonoBehaviour {
     public float rotationSpeed = 5.0f;
 	// Use this for initialization
 	void Start () {
-       // transform.rotation = new Quaternion(45, 0, 0, 0);
-
     }
 
     // Update is called once per frame
