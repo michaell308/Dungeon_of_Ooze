@@ -4,7 +4,7 @@ using System.Collections;
 public class Ooze : MonoBehaviour {
     public GameObject Player;
     public float moveSpeed = 0.2f;
-    public int health = 5;
+    public int health = 4;
     public float rotationSpeed = 5.0f;
 	// Use this for initialization
 	void Start () {
