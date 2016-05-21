@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+    public int health = 100;
     public float moveSpeed = 10.0f;
     public float mouseSensitivity = 5.0f;
     public float moveLR = 0; //move left/right
