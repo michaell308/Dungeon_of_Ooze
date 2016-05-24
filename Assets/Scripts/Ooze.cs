@@ -5,7 +5,7 @@ public class Ooze : MonoBehaviour {
     public GameObject Player;
     public float moveSpeed = 0.2f;
     public float returnToPatrolSpeed = 0.1f;
-    public int health = 5;
+    public int health = 100;
     public int damage = 10;
     public float rotationSpeed = 5.0f;
     public float range = 5.0f;
