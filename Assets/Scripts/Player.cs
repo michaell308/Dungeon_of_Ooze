@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour {
     public float vertVel = 0.0f; //vertical velocity for gravity
     public float jumpSpeed = 6.0f;
     CharacterController cc;
+    public Slider healthBarSlider;
     // Use this for initialization
     void Start () {
         Cursor.lockState = CursorLockMode.Locked;
@@ -22,6 +24,9 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        //scale healthbar
+        healthBarSlider.value = health;
+
         //get all input
         getInput();
 

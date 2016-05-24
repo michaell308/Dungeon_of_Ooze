@@ -12,8 +12,8 @@ public class Ooze : MonoBehaviour {
     public Vector3 patrolCenter;
     private Vector3 lastPos;
     private float resetAttackTimer = 1.0f; // 1 second
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         patrolCenter = transform.position;
     }
 
@@ -27,7 +27,7 @@ public class Ooze : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
-        Vector3 lookAtPos = Player.transform.position;
+        Vector3 lookAtPos = Player.transform.GetComponent<Renderer>().bounds.center;
         lookAtPos.y = 0;
         // sense player
         if (isWithinRange(lookAtPos, range)) { // in range
