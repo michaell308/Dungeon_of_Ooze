@@ -22,7 +22,6 @@ public class Player : MonoBehaviour {
     public Image gameOverBackDrop;
     // Use this for initialization
     void Start () {
-        healthBarSlider.enabled = true;
         gameOverText.enabled = false;
         gameOverUnderText.enabled = false;
         gameOverBackDrop.enabled = false;
@@ -32,14 +31,15 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        //scale healthbar
+        healthBarSlider.value = health;
+
         // end game if needed
         if (health <= 0) {
+            health = 0;
             gameOverScreenUpdate();
             return;
         }
-
-        //scale healthbar
-        healthBarSlider.value = health;
 
         //get all input
         getInput();
@@ -66,7 +66,8 @@ public class Player : MonoBehaviour {
     }
 
     void gameOverScreenUpdate() {
-        healthBarSlider.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         gameOverText.enabled = true;
         gameOverUnderText.enabled = true;
         gameOverBackDrop.enabled = true;
