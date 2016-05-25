@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -16,14 +17,27 @@ public class Player : MonoBehaviour {
     public float jumpSpeed = 6.0f;
     CharacterController cc;
     public Slider healthBarSlider;
+    public Text gameOverText;
+    public Text gameOverUnderText;
+    public Image gameOverBackDrop;
     // Use this for initialization
     void Start () {
+        healthBarSlider.enabled = true;
+        gameOverText.enabled = false;
+        gameOverUnderText.enabled = false;
+        gameOverBackDrop.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         cc = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update () {
+        // end game if needed
+        if (health <= 0) {
+            gameOverScreenUpdate();
+            return;
+        }
+
         //scale healthbar
         healthBarSlider.value = health;
 
@@ -49,5 +63,15 @@ public class Player : MonoBehaviour {
         moveLR = Input.GetAxis("Horizontal") * moveSpeed;
         turnLR = Input.GetAxis("Mouse X") * mouseSensitivity;
         turnUD -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+    }
+
+    void gameOverScreenUpdate() {
+        healthBarSlider.enabled = false;
+        gameOverText.enabled = true;
+        gameOverUnderText.enabled = true;
+        gameOverBackDrop.enabled = true;
+        if (Input.anyKeyDown) {
+            SceneManager.LoadScene("MainMenuScene");
+        }
     }
 }
