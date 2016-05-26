@@ -3,15 +3,17 @@ using System.Collections;
 
 public class Ooze : MonoBehaviour {
     public GameObject Player;
-    public float moveSpeed = 0.2f;
+    public float moveSpeed = 0.4f;
     public float returnToPatrolSpeed = 0.1f;
     public int health = 100;
     public int damage = 10;
     public float rotationSpeed = 5.0f;
     public float range = 5.0f;
+    public float rangePatrol = 1f;
     public Vector3 patrolCenter;
     private Vector3 lastPos;
     private float resetAttackTimer = 1.0f; // 1 second
+    public AudioClip oozeDmgSound;
     // Use this for initialization
     void Start () {
         patrolCenter = transform.position;
@@ -22,13 +24,8 @@ public class Ooze : MonoBehaviour {
         // update reset attack timer
         resetAttackTimer -= Time.deltaTime;
 
-        // destroy if no health
-        if (health <= 0) {
-            Destroy(this.gameObject);
-        }
-
         Vector3 lookAtPos = Player.transform.GetComponent<Renderer>().bounds.center;
-        lookAtPos.y = 0;
+        lookAtPos.y = transform.position.y;
         // sense player
         if (isWithinRange(lookAtPos, range)) { // in range
             transform.LookAt(lookAtPos);
@@ -36,7 +33,7 @@ public class Ooze : MonoBehaviour {
         } else { // not in range so patrol
             lookAtPos = transform.position;
             float speed = moveSpeed;
-            if (!isWithinRange(patrolCenter, range)) { // back to patrol
+            if (!isWithinRange(patrolCenter, rangePatrol)) { // back to patrol
                 lookAtPos = patrolCenter;
                 speed = returnToPatrolSpeed;
             } else { // random path in patrol area
@@ -51,7 +48,7 @@ public class Ooze : MonoBehaviour {
                     lookAtPos = Vector3.forward;
                 }
             }
-            lookAtPos.y = 0;
+            lookAtPos.y = transform.position.y;
             transform.LookAt(lookAtPos);
             transform.GetComponent<Rigidbody>().AddForce(transform.forward * speed, ForceMode.Impulse);
         }
@@ -72,6 +69,7 @@ public class Ooze : MonoBehaviour {
         if (collision.gameObject.Equals(Player.gameObject) && resetAttackTimer <= 0) { // do damage to player if colliding
             // should probably encapsulate this in player class
             ((Player)Player.gameObject.GetComponent(typeof(Player))).health -= damage;
+            GetComponent<AudioSource>().PlayOneShot(oozeDmgSound, 1);
             resetAttackTimer = 1.0f;
         }
     }

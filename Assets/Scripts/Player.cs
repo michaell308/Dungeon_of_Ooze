@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour {
 
     public int health = 100;
-    public float moveSpeed = 10.0f;
+    public float moveSpeed = 8.0f;
     public float mouseSensitivity = 5.0f;
     public float moveLR = 0; //move left/right
     public float moveFB = 0; //move forwards/backwards
