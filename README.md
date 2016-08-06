@@ -1,5 +1,5 @@
 # Dungeon_of_Ooze
-In Dungeon of Ooze you navigate a maze-like dungeon and fight ooze monsters to reach the exit.
+In Dungeon of Ooze you navigate a maze-like dungeon and fight ooze monsters to reach the exit. The game was created in just one week for the Game-a-Week Challenge.
 
 Want to try it out? Here's the link! https://www.dropbox.com/sh/91moyux4huj0itj/AADela8R2kJp_CEM6Riavw2ra?dl=0
 
